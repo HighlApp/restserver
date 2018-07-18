@@ -15,11 +15,9 @@ public class ServerController {
     private static final Logger log = LoggerFactory.getLogger(ServerController.class);
 
     @RequestMapping("/api")
-    public List<Response> onRequest(@RequestParam(value = "ncname", defaultValue = "User") String name) {
+    public Response onRequest(@RequestParam(value = "ncname", defaultValue = "User") String name,
+                              @RequestParam(value = "msg", defaultValue = "default message") String userMsg) {
         log.info("REST API requested!");
-        Response response1 = new Response(name);
-        Response response2 = new Response("Stachu");
-
-        return Arrays.asList(response1, response2);
+        return new Response(name, userMsg);
     }
 }
